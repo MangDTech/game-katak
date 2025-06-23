@@ -205,7 +205,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "LEVEL 1"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Label Info" type="Label" parent="."]
 offset_left = 40.0
 offset_top = 67.0
 offset_right = 414.0

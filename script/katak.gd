@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 200
 var gravity = 800
-var jump_force = -500
+var jump_force = -600
 var score = 0
 
 @onready var step_sound = $jalan

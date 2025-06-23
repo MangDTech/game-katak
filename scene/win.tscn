@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn04w4jn6l3qf"]
+[gd_scene load_steps=4 format=3 uid="uid://bn04w4jn6l3qf"]
 
 [ext_resource type="Script" uid="uid://bu0widjaiew4n" path="res://script/menu.gd" id="1_yalvk"]
 [ext_resource type="Texture2D" uid="uid://toe7j2osc535" path="res://gambar/background.png" id="2_8lnkg"]
+[ext_resource type="AudioStream" uid="uid://c488r01tu10yy" path="res://audio/game-win.mp3" id="3_8lnkg"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -77,9 +78,18 @@ alignment = 2
 layout_mode = 2
 text = "START"
 
+[node name="levels" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL"
+
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8lnkg")
+autoplay = true
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

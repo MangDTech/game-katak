@@ -1,8 +1,3 @@
-#extends CanvasLayer
-#
-#func update_info(lives, score):
-	#$VBoxContainer/HBoxContainer/lives.text = str(lives)
-	#$VBoxContainer/HBoxContainer2/score.text = str(score)
 extends CanvasLayer
 
 func _ready():

@@ -1,0 +1,214 @@
+[gd_scene load_steps=25 format=3 uid="uid://bup1uxhq57xtb"]
+
+[ext_resource type="PackedScene" uid="uid://do43x0kgsybho" path="res://scene/end.tscn" id="1_nr0vd"]
+[ext_resource type="Script" uid="uid://btv5c14iehvx1" path="res://script/katak.gd" id="2_uo3b5"]
+[ext_resource type="Texture2D" uid="uid://dy28kr0ea3lx7" path="res://gambar/katak.png" id="3_373l4"]
+[ext_resource type="AudioStream" uid="uid://bi18pj8l2odvs" path="res://audio/jalan.wav" id="4_t1b58"]
+[ext_resource type="AudioStream" uid="uid://bfmf7p54vilm2" path="res://audio/coin-sound.mp3" id="5_0ruw1"]
+[ext_resource type="AudioStream" uid="uid://dv4eiea3kaqxm" path="res://audio/jump.wav" id="6_2ipgb"]
+[ext_resource type="Texture2D" uid="uid://bheg1xtw7ds4d" path="res://gambar/tanah.png" id="7_iy1x5"]
+[ext_resource type="Texture2D" uid="uid://br3immxgail0e" path="res://gambar/bg.jpg" id="7_uo3b5"]
+[ext_resource type="Texture2D" uid="uid://csplqe3xgr0we" path="res://gambar/batu.png" id="8_bnh3d"]
+[ext_resource type="PackedScene" uid="uid://bsagrscnd332n" path="res://scene/HUD.tscn" id="9_tjs55"]
+[ext_resource type="PackedScene" uid="uid://bo4h0utd771ui" path="res://scene/score.tscn" id="10_7vk2x"]
+[ext_resource type="PackedScene" uid="uid://cpa151h7k7tbv" path="res://scene/ular.tscn" id="11_w7t6p"]
+[ext_resource type="AudioStream" uid="uid://wahr5pq5s821" path="res://audio/game-backsound.mp3" id="12_ka05y"]
+
+[sub_resource type="GDScript" id="GDScript_5vw27"]
+script/source = "extends Node2D
+
+var score = 0
+
+func add_score():
+	score += 1
+	$skor.text = \"Score: %d\" % score
+
+func _on_coin_body_entered(body):
+	if body.name == \"katak\":
+		add_score()
+		$coin.queue_free()  # menghapus koin
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(406.911, 466.347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg77c"]
+size = Vector2(146, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo3b5"]
+size = Vector2(380.092, 19.7358)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1173, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(37, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(26, 596.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(379.847, 100.348)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(146, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr0vd"]
+size = Vector2(196, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 12.1187
+
+[node name="main" type="Node2D"]
+script = SubResource("GDScript_5vw27")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+offset_left = -64.0
+offset_top = -10.0
+offset_right = 1170.0
+offset_bottom = 669.0
+texture = ExtResource("7_uo3b5")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="end" parent="." instance=ExtResource("1_nr0vd")]
+position = Vector2(-159, -26)
+scale = Vector2(1, 0.695)
+
+[node name="katak" type="CharacterBody2D" parent="."]
+script = ExtResource("2_uo3b5")
+
+[node name="Sprite2D" type="Sprite2D" parent="katak"]
+position = Vector2(155.75, 516.25)
+scale = Vector2(0.133571, 0.136651)
+texture = ExtResource("3_373l4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="katak"]
+position = Vector2(160.75, 513.625)
+scale = Vector2(0.175714, 0.178515)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="jalan" type="AudioStreamPlayer" parent="katak"]
+stream = ExtResource("4_t1b58")
+
+[node name="koin" type="AudioStreamPlayer" parent="katak"]
+stream = ExtResource("5_0ruw1")
+
+[node name="lompat" type="AudioStreamPlayer" parent="katak"]
+stream = ExtResource("6_2ipgb")
+volume_db = -24.36
+
+[node name="tanah" type="StaticBody2D" parent="."]
+
+[node name="s1" type="Sprite2D" parent="tanah"]
+position = Vector2(308, 126)
+scale = Vector2(0.386517, 0.26919)
+texture = ExtResource("7_iy1x5")
+
+[node name="cs1" type="CollisionShape2D" parent="tanah"]
+position = Vector2(308, 131)
+shape = SubResource("RectangleShape2D_dg77c")
+
+[node name="s2" type="Sprite2D" parent="tanah"]
+position = Vector2(582, 594)
+scale = Vector2(3.28333, 1.17778)
+texture = ExtResource("7_iy1x5")
+
+[node name="batas atas" type="CollisionShape2D" parent="tanah"]
+position = Vector2(559.017, -3.00003)
+scale = Vector2(3.28333, 1.17778)
+shape = SubResource("RectangleShape2D_uo3b5")
+
+[node name="batas bawah" type="CollisionShape2D" parent="tanah"]
+position = Vector2(570.5, 601)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="batas kiri" type="CollisionShape2D" parent="tanah"]
+position = Vector2(8.5, 278)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="batas kanan" type="CollisionShape2D" parent="tanah"]
+position = Vector2(1155, 294.25)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="s3" type="Sprite2D" parent="tanah"]
+position = Vector2(300, 405)
+scale = Vector2(0.49861, 0.398611)
+texture = ExtResource("7_iy1x5")
+
+[node name="cs3" type="CollisionShape2D" parent="tanah"]
+position = Vector2(301.302, 407)
+scale = Vector2(0.49861, 0.398611)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="s4" type="Sprite2D" parent="tanah"]
+position = Vector2(473, 234)
+scale = Vector2(0.405404, 0.261171)
+texture = ExtResource("7_iy1x5")
+
+[node name="cs4" type="CollisionShape2D" parent="tanah"]
+position = Vector2(479, 238)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="s5" type="Sprite2D" parent="tanah"]
+position = Vector2(798, 331)
+scale = Vector2(0.513889, 0.291667)
+texture = ExtResource("7_iy1x5")
+
+[node name="cs5" type="CollisionShape2D" parent="tanah"]
+position = Vector2(799, 337.5)
+shape = SubResource("RectangleShape2D_nr0vd")
+
+[node name="batu" type="StaticBody2D" parent="."]
+scale = Vector2(7.68, 4.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="batu"]
+position = Vector2(93.0989, 128.81)
+scale = Vector2(0.0699652, 0.0924251)
+texture = ExtResource("8_bnh3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="batu"]
+position = Vector2(93.4896, 133.571)
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="HUD" parent="." instance=ExtResource("9_tjs55")]
+
+[node name="score" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(130, 196)
+
+[node name="score2" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(544, 312)
+
+[node name="score6" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(308, 31)
+
+[node name="score4" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(923, 367)
+
+[node name="score5" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(710, 363)
+
+[node name="score3" parent="." instance=ExtResource("10_7vk2x")]
+position = Vector2(633, 121)
+
+[node name="ular" parent="." instance=ExtResource("11_w7t6p")]
+position = Vector2(188, 166)
+scale = Vector2(1.5, 1.5)
+
+[node name="ular2" parent="." instance=ExtResource("11_w7t6p")]
+position = Vector2(-263, 168)
+scale = Vector2(1.5, 1.5)
+
+[node name="backsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ka05y")
+autoplay = true
+
+[node name="Label Level" type="Label" parent="."]
+offset_left = 107.0
+offset_top = 2.0
+offset_right = 359.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "LEVEL 2"
+horizontal_alignment = 1

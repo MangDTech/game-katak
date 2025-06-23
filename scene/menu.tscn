@@ -77,9 +77,14 @@ alignment = 2
 layout_mode = 2
 text = "START"
 
+[node name="levels" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL"
+
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

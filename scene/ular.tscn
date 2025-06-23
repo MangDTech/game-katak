@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpa151h7k7tbv"]
+[gd_scene load_steps=7 format=3 uid="uid://cpa151h7k7tbv"]
 
 [ext_resource type="Script" uid="uid://dpnyxts684lto" path="res://script/lose.gd" id="1_lr720"]
 [ext_resource type="Texture2D" uid="uid://bk4g8wpcx4f78" path="res://gambar/ular.png" id="2_v6b3h"]
-[ext_resource type="AudioStream" uid="uid://co54pwf622acn" path="res://audio/game-over.mp3" id="3_v6b3h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8x6b2"]
 radius = 27.0
@@ -94,8 +93,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_4d2kk")
 }
 autoplay = "animasi"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="enemy"]
-stream = ExtResource("3_v6b3h")
 
 [connection signal="body_entered" from="enemy" to="enemy" method="_on_body_entered"]

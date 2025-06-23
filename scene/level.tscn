@@ -90,9 +90,9 @@ scale = Vector2(1.5, 1.5)
 layout_mode = 2
 text = "KEMBALI"
 
-[connection signal="pressed" from="VBoxContainer/satu" to="." method="_on_satu_pressed"]
 [connection signal="pressed" from="VBoxContainer/satu" to="." method="_on__pressed"]
-[connection signal="pressed" from="VBoxContainer/dua" to="." method="_on_dua_pressed"]
+[connection signal="pressed" from="VBoxContainer/satu" to="." method="_on_satu_pressed"]
 [connection signal="pressed" from="VBoxContainer/dua" to="." method="_on__pressed"]
+[connection signal="pressed" from="VBoxContainer/dua" to="." method="_on_dua_pressed"]
 [connection signal="pressed" from="VBoxContainer/tiga" to="." method="_on_tiga_pressed"]
 [connection signal="pressed" from="VBoxContainer2/kembali" to="." method="_on_kembali_pressed"]
